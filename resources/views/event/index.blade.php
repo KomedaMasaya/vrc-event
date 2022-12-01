@@ -10,9 +10,14 @@
 <body>
     <h1>VRC Event</h1>
     <div>
-    @foreach($tweets as $tweet)
-        <p>{{ $tweet->content }}</p>
-    @endforeach
+        @foreach($events->event_datetimes as $event)
+        <div>
+            {{ $event->title }}
+            {{ $event->description }}
+            {{ $event->End_Date }}
+        </div>
+        @endforeach
+       
     </div>
 </body>
 </html>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Event_DateTime;
 
 class EventController extends Controller
 {
@@ -15,6 +17,14 @@ class EventController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return 'Hello VRC';
+        $events = Event::find(1);
+        //$events = Event::with('event')->get();
+        //dd($events);
+        //$events = Event::with('event_datetimes')->get();
+        //return view('event.index', compact('event'));
+        //return view('event.index')
+        //->with('events','$events');
+        return view("event.index", ["events" => $events]);
+        //dd($events);
     }
 }
