@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/event', \App\Http\Controllers\Event\EventController::class);
+Route::get('/event/create', \App\Http\Controllers\Event\EventFormController::class)->name('event.create');
+Route::post('/event/create', \App\Http\Controllers\Event\CreateController::class)->name('event.post');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

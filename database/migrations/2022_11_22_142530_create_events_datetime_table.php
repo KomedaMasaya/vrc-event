@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('event_datetimes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('Start_Date', $precision = 0);
-            $table->dateTime('End_Date', $precision = 0);
-            $table->foreignId('event_id')->constrained('events');;
+            $table->integer('End_Date')->nullable();
+            $table->foreignId('event_id')->constrained('events');
         });
     }
 

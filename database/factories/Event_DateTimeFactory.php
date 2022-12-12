@@ -19,7 +19,7 @@ class Event_DateTimeFactory extends Factory
         return [
             'event_id'=> 1,
             'Start_Date'=>$this->faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
-            'End_Date'=>$this->faker->dateTime($max = 'now', $timezone = date_default_timezone_get()),
+            'End_Date'=>$this->faker->randomNumber(2),
             
         ];
     }

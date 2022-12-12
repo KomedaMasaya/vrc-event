@@ -17,7 +17,8 @@ class EventController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $events = Event::find(1);
+        //$events = Event::find(1);
+        $events = Event::all();
         //$events = Event::with('event')->get();
         //dd($events);
         //$events = Event::with('event_datetimes')->get();

@@ -9,15 +9,28 @@
 </head>
 <body>
     <h1>VRC Event</h1>
-    <div>
-        @foreach($events->event_datetimes as $event)
-        <div>
+    
+    @foreach($events as $event)
+        <div style="margin: 30px">
             {{ $event->title }}
+            @if ($event->support_pc && $event->support_quest)
+                <div style="margin: 5px">全て対応</div>
+            @elseif($event->support_pc)
+                <div style="margin: 5px">PC対応</div>
+            @elseif($event->support_quest)
+                <div style="margin: 5px">Quest対応</div>
+            @else
+                <div style="margin: 5px">error</div>
+            @endif
+
             {{ $event->description }}
-            {{ $event->End_Date }}
+            @foreach($event->event_datetimes as $event_datetime)
+                <div>
+                    {{ $aaa = (new DateTime($event_datetime->Start_Date))->format('m-d H:i'); }} ~
+                    {{ (new DateTime($event_datetime->Start_Date))->modify('+' . $event_datetime->End_Date . ' minutes')->format('m-d H:i'); }}
+                </div>
+            @endforeach
         </div>
-        @endforeach
-       
-    </div>
+    @endforeach
 </body>
 </html>
