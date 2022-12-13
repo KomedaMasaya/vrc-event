@@ -13,7 +13,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,38 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'event_title' => 'required|max:25' ,
+            'event_description' => 'required|max:25',
+            'event_end_date' => 'numeric|max:600',
+            'event_start_date' => 'required|date|after:now'
         ];
+ 
+        
     }
+
+    public function event_title(): string
+    {
+        return $this->input('event_title');
+    }
+
+    public function event_description(): string
+    {
+        return $this->input('event_description');
+    }
+
+    public function supported_devices(): bool
+    {
+        return $this->input('supported_devices');
+    }
+
+    public function event_end_date(): int
+    {
+        return $this->input('event_end_date');
+    }
+
+    public function event_start_date(): string
+    {
+        return $this->input('event_start_date');
+    }
+
 }
