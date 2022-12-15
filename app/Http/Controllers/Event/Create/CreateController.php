@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Event;
+namespace App\Http\Controllers\Event\Create;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

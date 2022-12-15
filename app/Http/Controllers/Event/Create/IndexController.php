@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Event;
+namespace App\Http\Controllers\Event\Create;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EventFormController extends Controller
+class IndexController extends Controller
 {
     /**
      * Handle the incoming request.
