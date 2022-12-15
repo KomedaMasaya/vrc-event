@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Event_DateTime;
 
-class EventController extends Controller
+class IndexController extends Controller
 {
     /**
      * Handle the incoming request.
