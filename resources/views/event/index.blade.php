@@ -11,8 +11,11 @@
     <h1>VRC Event</h1>
     
     @foreach($events as $event)
+        <details>
+            <summary>{{ $event->title }}
+    
         <div style="margin: 30px">
-            {{ $event->title }}
+            
             @if ($event->support_pc && $event->support_quest)
                 <div style="margin: 5px">全て対応</div>
             @elseif($event->support_pc)
@@ -31,6 +34,11 @@
                 </div>
             @endforeach
         </div>
+    </summary>
+            <div>
+                <a href="{{ route('event.update.index',['eventId'=>$event->id]) }}">編集</a>
+            </div>  
+        </details>
     @endforeach
 </body>
 </html>

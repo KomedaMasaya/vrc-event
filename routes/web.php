@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/event', \App\Http\Controllers\Event\IndexController::class);
+Route::get('/event', \App\Http\Controllers\Event\IndexController::class)->name('event.index');
 Route::get('/event/create', \App\Http\Controllers\Event\Create\IndexController::class)->name('event.create');
 Route::post('/event/create', \App\Http\Controllers\Event\Create\CreateController::class)->name('event.post');
+Route::get('/event/update/{eventId}', \App\Http\Controllers\Event\Update\IndexController::class)->name('event.update.index');
+Route::put('/event/update/{eventId}', \App\Http\Controllers\Event\Update\PutController::class)->name('event.update.put');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

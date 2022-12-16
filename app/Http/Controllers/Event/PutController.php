@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Event;
-use App\Models\Event_DateTime;
 
-class IndexController extends Controller
+class \PutController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,9 +15,6 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-
-        $events = Event::all();
-        return view("event.index", ["events" => $events]);
-
+        //
     }
 }
