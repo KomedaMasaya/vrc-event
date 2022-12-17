@@ -23,6 +23,7 @@ Route::get('/event/create', \App\Http\Controllers\Event\Create\IndexController::
 Route::post('/event/create', \App\Http\Controllers\Event\Create\CreateController::class)->name('event.post');
 Route::get('/event/update/{eventId}', \App\Http\Controllers\Event\Update\IndexController::class)->name('event.update.index');
 Route::put('/event/update/{eventId}', \App\Http\Controllers\Event\Update\PutController::class)->name('event.update.put');
+Route::delete('/event/delete/{eventId}',\App\Http\Controllers\Event\DeleteController::class)->name('event.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

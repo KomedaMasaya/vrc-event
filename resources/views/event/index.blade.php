@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>VRC Event</h1>
-    
+    @if (session('feedback.success'))
+        <p style="color: green">{{ session('feedback.success') }}</p>
+    @endif
     @foreach($events as $event)
         <details>
             <summary>{{ $event->title }}
@@ -37,6 +39,11 @@
     </summary>
             <div>
                 <a href="{{ route('event.update.index',['eventId'=>$event->id]) }}">編集</a>
+                <form action="{{ route('event.delete',['eventId' => $event->id])}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit">削除</button>
+                </form>
             </div>  
         </details>
     @endforeach
