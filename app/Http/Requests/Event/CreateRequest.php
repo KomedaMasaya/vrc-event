@@ -25,12 +25,17 @@ class CreateRequest extends FormRequest
     {
         return [
             'event_title' => 'required|max:25' ,
-            'event_description' => 'required|max:25',
+            'event_description' => 'required|max:2000',
             'event_end_date' => 'numeric|max:600',
             'event_start_date' => 'required|date|after:now'
         ];
  
         
+    }
+
+    public function userId(): int
+    {
+        return $this->user()->id;
     }
 
     public function event_title(): string

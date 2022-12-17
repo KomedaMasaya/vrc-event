@@ -17,6 +17,7 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => 1,
             'title' => $this->faker->name(),
             'support_pc'=>$this->faker->boolean(50),
             'support_quest'=>$this->faker->boolean(50),

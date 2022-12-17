@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Event\UpdateRequest;
 use App\Models\Event;
 use App\Models\Event_Datetime;
+use App\Services\EventService;
+use Symfony\Component\HttpKernel\Exception\AccessdeniedHttpException;
 
 class PutController extends Controller
 {
@@ -16,9 +18,13 @@ class PutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(UpdateRequest $request)
+    public function __invoke(UpdateRequest $request, EventService $eventService)
     {
+        
         $event = Event::where('id', $request->id())->firstOrFail();
+        if (!$eventService->checkOwnEvent($request->user()->id,$eventId)) {
+            throw new AccessDeniedHttpException();
+        }
         $event->title = $request->event_title();
         $event->description = $request->event_description();
         $supported = $request->supported_devices();

@@ -19,7 +19,7 @@ class CreateController extends Controller
     public function __invoke(CreateRequest $request)
     {
         $event = new Event;
-
+        $event->user_id = $request->userId();
         $event->title = $request->event_title();
         $event->description = $request->event_description();
         $supported = $request->supported_devices();

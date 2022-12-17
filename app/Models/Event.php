@@ -15,4 +15,9 @@ class Event extends Model
     {
         return $this->hasMany(Event_DateTime::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

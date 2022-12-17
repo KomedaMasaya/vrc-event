@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\EventService;
 use App\Models\Event;
 use App\Models\Event_DateTime;
 
@@ -15,11 +16,10 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, EventService $eventService)
     {
-
-        $events = Event::all();
+        $events = $eventService->getEvents();
         return view("event.index", ["events" => $events]);
-
+        
     }
 }
