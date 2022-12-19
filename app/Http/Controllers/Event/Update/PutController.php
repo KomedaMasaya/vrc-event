@@ -20,11 +20,11 @@ class PutController extends Controller
      */
     public function __invoke(UpdateRequest $request, EventService $eventService)
     {
-        
-        $event = Event::where('id', $request->id())->firstOrFail();
+        $eventId = (int) $request->route('eventId');
         if (!$eventService->checkOwnEvent($request->user()->id,$eventId)) {
             throw new AccessDeniedHttpException();
         }
+        $event = Event::where('id', $eventId)->firstOrFail();
         $event->title = $request->event_title();
         $event->description = $request->event_description();
         $supported = $request->supported_devices();
