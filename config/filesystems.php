@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'app_key' => env('DROPBOX_APP_KEY'),
+            'app_secret' => env('DROPBOX_APP_SECRET'),
+            'refresh_token' => env('DROPBOX_REFRESH_TOKEN')
+        ],
+
     ],
 
     /*

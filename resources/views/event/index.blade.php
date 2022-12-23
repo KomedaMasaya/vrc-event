@@ -1,5 +1,6 @@
-
+<p><img src="{{ $path }}" alt="{{ $path }}"></p>
     <h1>VRC Event</h1>
+    
     @if (session('feedback.success'))
         <p style="color: green">{{ session('feedback.success') }}</p>
     @endif
@@ -7,7 +8,6 @@
     @if(\Illuminate\Support\Facades\Auth::id() === $event->user_id)
         <details>
             <summary>{{ $event->title }} by {{ $event->user->name }}
-    
         <div style="margin: 30px">
             
             @if ($event->support_pc && $event->support_quest)

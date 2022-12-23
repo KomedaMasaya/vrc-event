@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -45,7 +45,7 @@ class PasswordUpdateTest extends TestCase
             ]);
 
         $response
-            ->assertSessionHasErrorsIn('updatePassword', 'current_password')
+            ->assertSessionHasErrors('current_password')
             ->assertRedirect('/profile');
     }
 }
