@@ -16,6 +16,9 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/event', \App\Http\Controllers\Event\IndexController::class)->name('event.index');
+Route::get('/event/{eventId}', \App\Http\Controllers\Event\IndexController::class)->name('event.page');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -24,8 +27,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
-Route::get('/event', \App\Http\Controllers\Event\IndexController::class)->name('event.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -44,3 +45,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+

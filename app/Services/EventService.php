@@ -8,7 +8,9 @@ class EventService
 {
      public function getEvents()
     {
-        return $events = Event::all();
+        return $events = Event::orderBy('created_at', 'desc')->get();
+
+       
     }
 
     public function checkOwnEvent(int $userId, int $eventId):bool
