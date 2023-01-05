@@ -8,7 +8,7 @@ use App\Services\EventService;
 use App\Models\Event;
 use App\Models\Event_DateTime;
 
-class IndexController extends Controller
+class EventPageController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -18,14 +18,16 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request, EventService $eventService)
     {
-        $user = $eventService->getUser();
         $path = $eventService->getImages();
-        $events = $eventService->getEvents();
-        return view('event.index')
+        $user = $eventService->getUser();
+        $eventId = (int) $request->route('eventId');
+        $event = Event::where('id', $eventId)->firstOrFail();
+        $event_datetimes = $event->event_datetimes;
+        $event_datetime = $event_datetimes->first();
+        return view('event.page')
             ->with('user',$user)
-            ->with('events',$events)
+            ->with('event',$event)
+            ->with('event_datetime',$event_datetime)
             ->with('path',$path);
-            
-        
     }
 }

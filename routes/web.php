@@ -13,26 +13,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/event', \App\Http\Controllers\Event\IndexController::class)->name('event.index');
+Route::get('/event/{eventId}', \App\Http\Controllers\Event\EventPageController::class)->name('event.page');
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/event', \App\Http\Controllers\Event\IndexController::class)->name('event.index');
-Route::get('/event/create', \App\Http\Controllers\Event\Create\IndexController::class)->name('event.create');
-Route::post('/event/create', \App\Http\Controllers\Event\Create\CreateController::class)->name('event.post');
-Route::get('/event/update/{eventId}', \App\Http\Controllers\Event\Update\IndexController::class)->name('event.update.index');
-Route::put('/event/update/{eventId}', \App\Http\Controllers\Event\Update\PutController::class)->name('event.update.put');
-Route::delete('/event/delete/{eventId}',\App\Http\Controllers\Event\DeleteController::class)->name('event.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/event/create', \App\Http\Controllers\Event\Create\IndexController::class)->name('event.create');
+    Route::post('/event/create', \App\Http\Controllers\Event\Create\CreateController::class)->name('event.post');
+    Route::get('/event/update/{eventId}', \App\Http\Controllers\Event\Update\IndexController::class)->name('event.update.index');
+    Route::put('/event/update/{eventId}', \App\Http\Controllers\Event\Update\PutController::class)->name('event.update.put');
+    Route::delete('/event/delete/{eventId}',\App\Http\Controllers\Event\DeleteController::class)->name('event.delete');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+
+
+

@@ -4,14 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use DateTime;
-use App\Models\Event;
-use App\Models\Event_DateTime;
+use App\Models\User;
 
-
-class EventsSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,6 +15,6 @@ class EventsSeeder extends Seeder
      */
     public function run()
     {
-        Event::factory()->create();
+        User::factory()->create();
     }
 }

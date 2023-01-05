@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VRC Event</title>
-</head>
-<body>
+<x-layout title="TOP | Event">
+    <x-header>
+    
+        @if (isset($user))
+        <p>ログイン中のユーザー: {{ $user->name }}</p>
+      @else
+        <p>ログインしていません。</p>
+      @endif
+        
+    </x-header>
     <h1>イベントを編集する</h1>
     <div>
         <a href="{{ route('event.index') }}">戻る</a>
@@ -53,5 +53,4 @@
             <button type="submit">編集</button>
         </form>
     </div>
-</body>
-</html>
+</x-layout>

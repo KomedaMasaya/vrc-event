@@ -1,14 +1,9 @@
-<!doctype html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VRC Event</title>
-</head>
-<body>
-    <h1>VRC Event</h1>
+<x-layout title="TOP | Event">
+    <x-header>
+        <li>
+            <x-layout.single></x-layout.single>
+        </li>
+    </x-header>
     <div>
         <p>投稿フォーム</p>
         <form action="{{ route('event.create') }}" method="post">
@@ -42,8 +37,7 @@
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
-            <button>送信</button>
+                <x-element.button>送信</x-element.button>
         </form>
     </div>
-</body>
-</html>
+</x-layout>
