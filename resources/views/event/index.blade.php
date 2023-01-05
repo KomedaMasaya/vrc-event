@@ -46,11 +46,9 @@
                     </div>
                 </div>
             </summary> 
-    
-            
         @endforeach
     </div>
-    
+
     <h1>今月</h1>
     <div class="flex overflow-x-auto">
         @foreach($events as $event)
@@ -131,29 +129,33 @@
         @endforeach
     </div>
     
-    <h1>マイページ</h1>
+
     @if (session('feedback.success'))
     <p style="color: green">{{ session('feedback.success') }}</p>
     @endif
+    <h1>My Event</h1>
         <div class="flex overflow-x-auto">
             @foreach($events as $event)
             @if(\Illuminate\Support\Facades\Auth::id() === $event->user_id)
                
                     <div class=" py-2 ">
                         <div class="mr-2 sm:mr-2 md:mr-2 lg:mr-2 xl:mr-2">
-                                    <div class="h-24 w-32 sm:h-32 sm:w-44 flex flex-col ">
+                                    <div class="h-24 w-32 sm:h-44 sm:w-44 flex flex-col ">
 
                                         <details class="">
                                             <summary class=" group rounded-lg h-16 w-32 sm:h-24 sm:w-44 block bg-gray-100 overflow-hidden relative">
                                                 <img src="{{ $path }}" loading="lazy" alt="Photo by Martin Sanchez" class="w-full h-full  object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
                                             </summary> 
                                             
-                                            <div class="relative">
-                                                <a href="{{ route('event.update.index',['eventId'=>$event->id]) }}">編集</a>
+                                            <div class="flex mt-1">
+                                                <div class="mr-2">
+                                                    <x-element.button-a-sm :href="route('event.update.index',['eventId'=>$event->id])">編集</x-element.button-a-sm>
+                                                </div>
+                                                
                                                 <form action="{{ route('event.delete',['eventId' => $event->id])}}" method="post">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit">削除</button>
+                                                    <x-element.button-sm>削除</x-element.button-sm>
                                                 </form>
                                             </div>  
                                         </details> 
