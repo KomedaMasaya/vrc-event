@@ -10,8 +10,7 @@
                 <x-element.button-a :href="route('event.index')">ホーム</x-element.button-a>
             </li>
         </x-header>
-    <div>
-        
+    <div> 
         <form action="{{ route('event.create') }}" method="post">
             @csrf
                 <div>
@@ -80,7 +79,7 @@
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 mb-2">
                     <x-element.button>送信</x-element.button>
                 </div>
                 
