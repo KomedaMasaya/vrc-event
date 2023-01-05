@@ -138,13 +138,28 @@
         <div class="flex overflow-x-auto">
             @foreach($events as $event)
             @if(\Illuminate\Support\Facades\Auth::id() === $event->user_id)
-                <summary class="list-none">
+               
                     <div class=" py-2 ">
                         <div class="mr-2 sm:mr-2 md:mr-2 lg:mr-2 xl:mr-2">
                                     <div class="h-24 w-32 sm:h-32 sm:w-44 flex flex-col ">
-                                        <a href="{{ route('event.page',['eventId'=>$event->id]) }}" class="group rounded-lg h-16 w-32 sm:h-24 sm:w-44 block bg-gray-100 overflow-hidden relative">
-                                            <img src="{{ $path }}" loading="lazy" alt="Photo by Martin Sanchez" class="w-full h-full  object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-                                        </a>
+
+                                        <details class="">
+                                            <summary class=" group rounded-lg h-16 w-32 sm:h-24 sm:w-44 block bg-gray-100 overflow-hidden relative">
+                                                <img src="{{ $path }}" loading="lazy" alt="Photo by Martin Sanchez" class="w-full h-full  object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+                                            </summary> 
+                                            
+                                            <div class="relative">
+                                                <a href="{{ route('event.update.index',['eventId'=>$event->id]) }}">編集</a>
+                                                <form action="{{ route('event.delete',['eventId' => $event->id])}}" method="post">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit">削除</button>
+                                                </form>
+                                            </div>  
+                                        </details> 
+
+
+                                        
                                         <div class="flex flex-col flex-1 text-xs">
                                             <a href="{{ route('event.page',['eventId'=>$event->id]) }}" class=" whitespace-nowrap overflow-hidden active:text-indigo-600 transition duration-100">
                                                     @if ($event->support_pc && $event->support_quest)
@@ -167,17 +182,8 @@
                                     </div>
                         </div>
                     </div>
-                </summary> 
-                <details>
-                    <div>
-                        <a href="{{ route('event.update.index',['eventId'=>$event->id]) }}">編集</a>
-                        <form action="{{ route('event.delete',['eventId' => $event->id])}}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit">削除</button>
-                        </form>
-                    </div>  
-                </details>  
+                    
+                 
                 @endif 
             @endforeach
         </div>
