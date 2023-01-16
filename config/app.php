@@ -82,7 +82,7 @@ return [
     |
     */
 
-    //'locale' => 'en',
+    //'locale' => 'ja',
     'locale' => 'ja',
 
     /*
@@ -110,7 +110,7 @@ return [
     |
     */
 
-    //'faker_locale' => 'en_US',
+    //'faker_locale' => 'ja_JP',
     'faker_locale' => 'ja_JP',
 
     /*
