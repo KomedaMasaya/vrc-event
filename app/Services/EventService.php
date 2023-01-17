@@ -3,7 +3,9 @@ namespace App\Services;
 
 use App\Models\Event;
 use App\Models\Event_DateTime;
+use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class EventService
@@ -31,6 +33,8 @@ class EventService
         }
         return $event->user_id === $userId;
     }
+
+    
 
     
 }
