@@ -18,6 +18,6 @@ class Events_DateTimeSeeder extends Seeder
      */
     public function run()
     {
-        Event_DateTime::factory()->create();
+        //Event_DateTime::factory()->create();
     }
 }

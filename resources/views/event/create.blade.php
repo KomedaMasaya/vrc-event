@@ -11,7 +11,7 @@
             </li>
         </x-header>
     <div> 
-        <form action="{{ route('event.create') }}" method="post">
+        <form action="{{ route('event.create') }}" method="post" enctype="multipart/form-data">
             @csrf
                 <div>
                     <label for="event_title" class="inline-block text-gray-800 text-sm sm:text-base mb-2">イベントタイトル</label>
@@ -79,6 +79,15 @@
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <div>
+                        <label for="image" class="inline-block text-gray-800 text-sm sm:text-base mb-2"></label>
+                        <input id="event" type="file" name="image" accept="image/*" placeholder="" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+                        @error('image')
+                            <p style="color: red;">{{ $message }}</p>
+                        @enderror
+                </div>
+
                 <div class="mt-2 mb-2">
                     <x-element.button>送信</x-element.button>
                 </div>

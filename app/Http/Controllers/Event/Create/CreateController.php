@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Event\CreateRequest;
 use App\Models\Event;
 use App\Models\Event_Datetime;
+use App\Models\Image;
+use App\Services\EventService;
+use Illuminate\Support\Facades\Storage;
 
 class CreateController extends Controller
 {
@@ -16,7 +19,7 @@ class CreateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(CreateRequest $request)
+    public function __invoke(CreateRequest $request, EventService $eventService)
     {
         $event = new Event;
         $event->user_id = $request->userId();
@@ -42,8 +45,15 @@ class CreateController extends Controller
         $event_datetime->Start_Date = $request->event_start_date();
         $event_datetime->End_Date = $request->event_end_date();
         $event_datetime->save();
-        
 
-        return redirect()->route('event.create');
+
+        $image = $request->image();
+        Storage::disk('dropbox')->put('',$image);
+        $imageModel = new Image();
+        $imageModel->name = $image->hashName();
+        $imageModel->save();
+        $event->images()->attach($imageModel->id);
+
+        return redirect()->route('event.index');
     }
 }

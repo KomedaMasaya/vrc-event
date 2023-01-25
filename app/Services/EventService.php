@@ -12,12 +12,12 @@ class EventService
 {
      public function getEvents()
     {
-        return $events = Event::orderBy('created_at', 'desc')->get();
+        return $events = Event::with('images')->orderBy('created_at', 'desc')->get();
     }
 
     public function getImages()
     {
-        return $path = Storage::disk('dropbox')->url('IMG_2264.jpg');
+        return $path = Storage::disk('dropbox')->url('udYZbzIrr1NedyUKQF50rHfAZrSWHdg35cK4TuyQ.png');
     }
 
     public function getUser()
@@ -34,7 +34,16 @@ class EventService
         return $event->user_id === $userId;
     }
 
-    
+    public function saveImage($image)
+    {
+        
+        Storage::disk('dropbox')->put('Event_app',$image);
+
+        $imageModel = new Image();
+        $imageModel->name = $image->hashName();
+        $imageModel->save();
+    }
+
 
     
 }
