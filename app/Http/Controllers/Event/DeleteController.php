@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Event_DateTime;
 use App\Services\EventService;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\AccessdeniedHttpException;
 
 class DeleteController extends Controller
@@ -25,6 +26,13 @@ class DeleteController extends Controller
             throw new AccessDeniedHttpException();
         }
         $event = Event::where('id',$eventId)->firstOrFail();
+        $image = $event->images->first();
+        $path = $image->name;
+        if(Storage::disk('dropbox')->exists($path)){
+            Storage::disk('dropbox')->delete($path);
+        }
+        $event->images()->detach($image->id);
+        $image->delete();
         $event->event_datetimes()->delete();
         $event->delete();
         return redirect()

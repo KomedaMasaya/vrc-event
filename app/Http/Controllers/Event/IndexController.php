@@ -19,12 +19,11 @@ class IndexController extends Controller
     public function __invoke(Request $request, EventService $eventService)
     {
         $user = $eventService->getUser();
-        $path = $eventService->getImages();
         $events = $eventService->getEvents();
         return view('event.index')
             ->with('user',$user)
-            ->with('events',$events)
-            ->with('path',$path);
+            ->with('events',$events);
+            
             
         
     }

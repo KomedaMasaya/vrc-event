@@ -15,10 +15,6 @@ class EventService
         return $events = Event::with('images')->orderBy('created_at', 'desc')->get();
     }
 
-    public function getImages()
-    {
-        return $path = Storage::disk('dropbox')->url('udYZbzIrr1NedyUKQF50rHfAZrSWHdg35cK4TuyQ.png');
-    }
 
     public function getUser()
     {
